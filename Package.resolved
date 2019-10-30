@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FoundationExtended",
+        "repositoryURL": "https://github.com/IsaacXen/FoundationExtended.git",
+        "state": {
+          "branch": null,
+          "revision": "b1ac028b16329c52c39a452e60c59398098e534e",
+          "version": "0.2.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

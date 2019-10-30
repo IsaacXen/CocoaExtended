@@ -1,8 +1,6 @@
-//
-//  File.swift
-//  
-//
-//  Created by Isaac Chen on 2019/10/30.
-//
+import AppKit
 
-import Foundation
+@available(OSX 10.11, *)
+public protocol Reusable: class {
+    static var reuseIdentifier: NSUserInterfaceItemIdentifier { get }
+}

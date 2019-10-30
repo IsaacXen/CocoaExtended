@@ -6,10 +6,10 @@ final class CocoaExtendedTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(CocoaExtended().text, "Hello, World!")
+//        XCTAssertEqual(CocoaExtended().text, "Hello, World!")
     }
 
-    static var allTests = [
-        ("testExample", testExample),
+    static var allTests: [(String, (CocoaExtendedTests) -> () -> ())] = [
+//        ("testExample", testExample),
     ]
 }
