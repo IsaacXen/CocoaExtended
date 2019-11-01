@@ -2,7 +2,7 @@ import Cocoa
 
 public extension NSViewController {
     
-    /// Add a view controller as reciver's child controller and add it's view to a container view.
+    /// Add a view controller as receiver's child controller and add it's view to a container view.
     ///
     /// This function do the following things:
     ///
