@@ -36,8 +36,10 @@ public extension NSEvent {
         var toPoint = NSMakePoint(fromPoint.x + dx, fromPoint.y + dy)
         
         if !NSScreen.screens.contains(where: { NSMouseInRect(toPoint, $0.frame, false) }) {
+            print(toPoint, fromScreen.frame)
             toPoint.x = max(fromScreen.frame.minX, min(toPoint.x, fromScreen.frame.maxX))
             toPoint.y = max(fromScreen.frame.minY, min(toPoint.y, fromScreen.frame.maxY))
+            print(toPoint)
         }
         
         let flippedToPoint = NSMakePoint(toPoint.x, screen.frame.maxY - toPoint.y)
