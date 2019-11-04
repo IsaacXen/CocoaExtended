@@ -27,10 +27,22 @@ public extension NSEvent {
     /// - Parameter dy: The cursor offset in y axis, in point. A positive value cause the cursor to move up, a negitive value cause the cursor to move down.
     @available(OSX 10.4, *)
     class func postMouseMovedEvent(dx: CGFloat, dy: CGFloat) {
-        guard let screen = NSScreen.screens.first else { return }
-        let mouseLocation = NSEvent.mouseLocation
-        let point = NSMakePoint(mouseLocation.x + dx, screen.frame.maxY - mouseLocation.y - dy)
-        CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: point, mouseButton: .left)?.post(tap: .cghidEventTap)
+        let fromPoint = NSEvent.mouseLocation
+        guard
+            let screen = NSScreen.screens.first,
+            let fromScreen = NSScreen.screens.first(where: { NSMouseInRect(mouseLocation, $0.frame, false) })
+        else { return }
+        
+        var toPoint = NSMakePoint(fromPoint.x + dx, fromPoint.y + dy)
+        
+        if !NSScreen.screens.contains(where: { NSMouseInRect(toPoint, $0.frame, false) }) {
+            toPoint.x = max(fromScreen.frame.minX, min(toPoint.x, fromScreen.frame.maxX))
+            toPoint.y = max(fromScreen.frame.minY, min(toPoint.y, fromScreen.frame.maxY))
+        }
+        
+        let flippedToPoint = NSMakePoint(toPoint.x, screen.frame.maxY - toPoint.y)
+        
+        CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: flippedToPoint, mouseButton: .left)?.post(tap: .cghidEventTap)
     }
     
 }
