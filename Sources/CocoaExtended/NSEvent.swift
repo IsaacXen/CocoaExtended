@@ -38,7 +38,7 @@ public extension NSEvent {
         if !NSScreen.screens.contains(where: { NSMouseInRect(toPoint, $0.frame, false) }) {
             print(toPoint, fromScreen.frame)
             toPoint.x = max(fromScreen.frame.minX, min(toPoint.x, fromScreen.frame.maxX - 0.01953125))
-            toPoint.y = max(fromScreen.frame.minY, min(toPoint.y, fromScreen.frame.maxY - 0.01953125))
+            toPoint.y = max(fromScreen.frame.minY + 0.01953125, min(toPoint.y, fromScreen.frame.maxY))
             print(toPoint)
         }
         
