@@ -16,3 +16,14 @@ public extension CGRect {
     }
     
 }
+
+extension CGRect: Hashable {
+    public static func == (lhs: CGRect, rhs: CGRect) -> Bool {
+        return lhs.origin.x == rhs.origin.x && lhs.origin.y == rhs.origin.y && lhs.size.width == rhs.size.width && lhs.size.height == rhs.size.height
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(origin)
+        hasher.combine(size)
+    }
+}

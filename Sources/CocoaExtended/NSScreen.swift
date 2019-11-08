@@ -29,5 +29,10 @@ public extension NSScreen {
         
         return NSMakePoint(x, y)
     }
+            
+    /// A unique identifier for this display.
+    var id: CGDirectDisplayID {
+        deviceDescription[.init("NSScreenNumber")] as! CGDirectDisplayID
+    }
     
 }
